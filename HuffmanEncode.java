@@ -68,7 +68,7 @@ public class HuffmanEncode {
         return huffmanCodes;
     }
 
-    public String encodeHelper(String text, Map<Character, String> huffmanCodes){
+    public  String encodeHelper(String text, Map<Character, String> huffmanCodes){
         StringBuilder encodedString = new StringBuilder();
         for (char c : text.toCharArray()){
             encodedString.append(huffmanCodes.get(c));
