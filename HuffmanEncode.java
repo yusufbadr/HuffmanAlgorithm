@@ -68,18 +68,18 @@ public class HuffmanEncode {
         return huffmanCodes;
     }
 
-    public static Object[] encodeHelper(String text, Map<Character, String> huffmanCodes){
+    public static Object[] encodeHelper(Map<Character, String> huffmanCodes, String text){
         StringBuilder encodedString = new StringBuilder();
         for (char c : text.toCharArray()){
             encodedString.append(huffmanCodes.get(c));
         }
 
-        return new Object[]{encodedString.toString(), huffmanCodes};
+        return new Object[]{huffmanCodes, encodedString.toString()};
     }
     public static Object[] encode(String text){
         Map<Character, Integer> frequencyMap = buildFrequencyMap(text);
         HuffmanNode root = buildHuffmanTree(frequencyMap);
         Map<Character, String> huffmanCodes = buildHuffmanCodes(root);
-        return encodeHelper(text, huffmanCodes);
+        return encodeHelper(huffmanCodes, text);
     }
 }

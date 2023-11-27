@@ -5,7 +5,7 @@ import java.io.ObjectOutputStream;
 import java.util.Map;
 
 public class HuffmanBinaryFileWriter {
-    public void write(String filename, Map<Character, String> huffmanCodes, String encodedBits){
+    public static void write(String filename, Map<Character, String> huffmanCodes, String encodedBits){
         try(ObjectOutputStream outputStream = new ObjectOutputStream((new FileOutputStream(filename)))){
             outputStream.writeObject(huffmanCodes);
             outputStream.writeObject(encodedBits);
