@@ -15,9 +15,4 @@ public class GUIProgram {
         HuffmanBinaryFileWriter.write("output.dat", huffmanCodes,encodedBits);
 
     }
-
-
-
-
-
 }
