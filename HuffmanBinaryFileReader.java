@@ -4,11 +4,12 @@ import java.io.ObjectInputStream;
 import java.util.Map;
 
 public class HuffmanBinaryFileReader {
-    public static HuffmanFileData read(String filename) {
+
+    public static Object[] read(String filename) {
         try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(filename))) {
             Map<Character, String> huffmanCodes = (Map<Character, String>) inputStream.readObject();
             String encodedBits = (String) inputStream.readObject();
-            return new HuffmanFileData(huffmanCodes, encodedBits);
+            return new Object[]{huffmanCodes, encodedBits};
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
             return null;
