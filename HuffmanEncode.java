@@ -14,7 +14,7 @@ public class HuffmanEncode {
     }
 
     //building a frequency map
-    public Map<Character, Integer> buildFrequencyMap(String text){
+    public static Map<Character, Integer> buildFrequencyMap(String text){
         Map<Character, Integer> frequencyMap = new HashMap<>();
         for (char c : text.toCharArray()){
             frequencyMap.put(c, frequencyMap.getOrDefault(c,  0) + 1);
@@ -24,7 +24,7 @@ public class HuffmanEncode {
     }
 
     // building a huffman tree
-    public HuffmanNode buildHuffmanTree(Map<Character, Integer> frequencyMap){
+    public static HuffmanNode buildHuffmanTree(Map<Character, Integer> frequencyMap){
         PriorityQueue<HuffmanNode> priorityQueue = new PriorityQueue<>(new HuffmanComparator());
 
         for (Map.Entry<Character, Integer> entry : frequencyMap.entrySet()) {
@@ -48,7 +48,7 @@ public class HuffmanEncode {
         return priorityQueue.poll();
     }
 
-    public void buildHuffmanCodesRecursive(HuffmanNode root, String code, Map<Character, String> huffmanCodes){
+    public static void buildHuffmanCodesRecursive(HuffmanNode root, String code, Map<Character, String> huffmanCodes){
         if (root == null)
             return;
 
@@ -62,25 +62,24 @@ public class HuffmanEncode {
 
     }
 
-    public Map<Character, String> buildHuffmanCodes(HuffmanNode root){
+    public static Map<Character, String> buildHuffmanCodes(HuffmanNode root){
         Map<Character, String> huffmanCodes = new HashMap<>();
         buildHuffmanCodesRecursive(root, "", huffmanCodes);
         return huffmanCodes;
     }
 
-    public  String encodeHelper(String text, Map<Character, String> huffmanCodes){
+    public static Object[] encodeHelper(String text, Map<Character, String> huffmanCodes){
         StringBuilder encodedString = new StringBuilder();
         for (char c : text.toCharArray()){
             encodedString.append(huffmanCodes.get(c));
         }
 
-        return encodedString.toString();
+        return new Object[]{encodedString.toString(), huffmanCodes};
     }
-    public String encode(String text){
+    public static Object[] encode(String text){
         Map<Character, Integer> frequencyMap = buildFrequencyMap(text);
         HuffmanNode root = buildHuffmanTree(frequencyMap);
         Map<Character, String> huffmanCodes = buildHuffmanCodes(root);
         return encodeHelper(text, huffmanCodes);
     }
-
 }
